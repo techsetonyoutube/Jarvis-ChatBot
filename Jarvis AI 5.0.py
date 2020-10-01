@@ -8,18 +8,19 @@ import datetime
 import webbrowser
 import time
 import calendar 
+from pyowm import 
 #(all the green words are somthing jarvis will say or somthing he will understand if you say, the ones after if esa in/ if res2 in are things he will understand if you say. the ones after random.choice are things he will say or respond to you with)
 
 
 # jarvis greets you first with one of these greeetings \/ 
-a = random.choice(("hi","hey","sup","whats up","hey it's jarvis","hello","hey there","good to see you"))
+a = random.choice(("hi","hey","sup","whats up","hey it's jarvis","hello","hey there","good to see you", "hola"))
 print (a)
 os.system("say '"+a+"'") 
 resp1 = input("")
 
     
 # he will ask you what you want to do
-gE = random.choice(("what are we going to do?","so what we doin?","what do you want to do sir?","so what are we gonna do?","k now what?","so what do you want to do?"))
+gE = random.choice(("what are we going to do?","so what we doin?","what do you want to do sir?","so what are we gonna do?","k now what?","so what do you want to do?", "How may I help you, Sir?"))
 print (gE)
 os.system("say '"+gE+"'") 
 
@@ -63,7 +64,7 @@ crush = ("")
     
 questionmark = random.choice(("?","??","???","???"))
     
-bad_stuff_keywords = ("death","kill","hurt","harm","discomfort","bad","terible","dead","cruel","illegal")
+bad_stuff_keywords = ("death","kill","hurt","harm","discomfort","bad","terible","dead","cruel","illegal", "murder", "suicide", "massacre")
     
 good_stuff_keywords = ("fun","awesome","love","super","entertaining","amazing","good","relax","great","yummy","delicous")
 
@@ -73,7 +74,17 @@ def offline():
 	os.system("say '"+Offl+"'")
             
 def weather():
-	print ("weather coming soon")
+	
+        owm = OWM('your-API-key')  # You MUST provide a valid API key
+
+        # Search for current weather in London (Great Britain)
+        mgr = owm.weather_manager()
+        observation = mgr.weather_at_place('London,GB')
+        w = observation.weather
+        print(w.wind(), w.humidity, w.temperature('celsius'))             
+
+
+
 
 def hi():
 	greet = random.choice(("hey","hi","sup","hello","hey there","hia","hello there","hey " + name))
@@ -100,7 +111,7 @@ def ok():
 	os.system("say '"+ok1+"'")
 
 def yes():
-	yeah11 = random.choice(("yeah","yes","yep","yes sir"))
+	yeah11 = random.choice(("yeah","yes","yep","yes sir", "I must say I agree, Sir.))
 	print (yeah11)
 	os.system("say '"+yeah11+"'")
 
